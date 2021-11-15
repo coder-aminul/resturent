@@ -1,16 +1,13 @@
 import React from 'react';
 import './App.css';
-import Body from './components/Body/Body';
-import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
+import './components/assets/css/style.css';
+import MainComponents from './components/MainComponents';
 
 
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Body/>
-      <Footer/>
+      <MainComponents/>
     </div>
   );
 }
