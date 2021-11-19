@@ -39,8 +39,24 @@ a:hover {
   color: #000;
   box-shadow: 0 4px 20px #0000001a;
 }
+
 .box:hover {
   background-color: #ffce00ed;
   color: #000;
   transition: 0.5s;
+}
+a.nav-link {
+  color: #fff !important;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.navbar .nav-link:hover{
+  color:#ffce00ed!important;
+}
+
+.navbar-nav a:hover,a:active,a.active{
+  color: #ffce00ed!important;
+}
+.active{
+  color: #ffce00ed!important;
 }
