@@ -1,13 +1,17 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import DISHES from "../.././Data/Dishes";
 import DishDetails from "./DishDetails";
 import MenuItems from "./MenuItems";
-import Modals from "./Modals";
+
+const mapStateTopops = (state) => {
+  return {
+    dishes: state.dishes,
+  };
+};
 
 class Menu extends Component {
   state = {
-    dishes: DISHES,
     seletDishes: null,
     modalOpen: false,
   };
@@ -24,7 +28,7 @@ class Menu extends Component {
     });
   };
   render() {
-    const menu = this.state.dishes.map((item) => {
+    const menu = this.props.dishes.map((item) => {
       return (
         <MenuItems
           dish={item}
@@ -42,7 +46,6 @@ class Menu extends Component {
         <div className="row">
           <div className="col-md-12">
             <div className="grid-container">{menu}</div>
-            <Modals />
             <Modal
               isOpen={this.state.modalOpen}
               onClick={() => this.onToggleModal}
@@ -61,4 +64,4 @@ class Menu extends Component {
     );
   }
 }
-export default Menu;
+export default connect(mapStateTopops)(Menu);
