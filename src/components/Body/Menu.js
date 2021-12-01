@@ -7,6 +7,7 @@ import MenuItems from "./MenuItems";
 const mapStateTopops = (state) => {
   return {
     dishes: state.dishes,
+    comments: state.comments,
   };
 };
 
@@ -39,7 +40,12 @@ class Menu extends Component {
     });
     let dishSelect = null;
     if (this.state.seletDishes != null) {
-      dishSelect = <DishDetails dish={this.state.seletDishes} />;
+      const comments = this.props.comments.filter((comment) => {
+        return comment.dishId === this.state.seletDishes.id;
+      });
+      dishSelect = (
+        <DishDetails dish={this.state.seletDishes} comments={comments} />
+      );
     }
     return (
       <div className="container">
@@ -50,7 +56,11 @@ class Menu extends Component {
               isOpen={this.state.modalOpen}
               onClick={() => this.onToggleModal}
             >
-              <ModalHeader>{}</ModalHeader>
+              <ModalHeader>
+                <span className="modal-close" onClick={this.onToggleModal}>
+                  &times;
+                </span>
+              </ModalHeader>
               <ModalBody>{dishSelect}</ModalBody>
               <ModalFooter>
                 <Button color="danger" onClick={this.onToggleModal}>

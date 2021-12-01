@@ -1,11 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
 
-let NewMenuItems=()=>{
-    return(
-        <div>
-            <h3>New component</h3>
-        </div>
+class NewMenuItems extends Component {
+  render() {
+    return (
+      <div className="container">
+        <h4>New Menu Ad</h4>
+      </div>
     );
+  }
 }
 
 export default NewMenuItems;

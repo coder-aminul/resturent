@@ -17,7 +17,6 @@ class Contact extends Component {
     this.submitHandler = this.submitHandler.bind(this);
   }
   InputChangeHandle = (event) => {
-    console.log(this.props);
     const value =
       event.target.type === "chekbox"
         ? event.target.checked
@@ -30,6 +29,15 @@ class Contact extends Component {
 
   submitHandler = (event) => {
     console.log(this.state);
+    this.setState({
+      fname: "",
+      lname: "",
+      email: "",
+      phone: "",
+      checkbox: false,
+      text: "",
+      conctType: "E-mail",
+    });
     event.preventDefault();
   };
   render() {

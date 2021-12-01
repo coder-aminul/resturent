@@ -40,6 +40,11 @@ class Navigation extends Component {
                 </NavLink>
               </NavItem>
               <NavItem>
+                <NavLink exact to="/newmwnuadd" className="nav-link">
+                  MenuAdd
+                </NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink exact to="/about" className="nav-link">
                   About
                 </NavLink>

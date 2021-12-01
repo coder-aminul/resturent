@@ -4,6 +4,7 @@ import About from "./About";
 import Contact from "./Contact";
 import Home from "./Home";
 import Menu from "./Menu";
+import NewMenuItems from "./NewMenuItems";
 import Service from "./Service";
 
 const Body = () => {
@@ -11,6 +12,7 @@ const Body = () => {
     <div>
       <Route path="/" exact component={Home} />
       <Route path="/menus" exact component={Menu} />
+      <Route path="/newmwnuadd" exact component={NewMenuItems} />
       <Route path="/contact" exact component={Contact} />
       <Route path="/service" exact component={Service} />
       <Route path="/about" exact component={About} />
