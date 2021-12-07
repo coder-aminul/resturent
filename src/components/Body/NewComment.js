@@ -18,7 +18,12 @@ class NewComment extends Component {
     });
   };
   onsubmit = (event) => {
-    console.log(this.state);
+    this.props.addComment(
+      this.props.dishId,
+      this.state.author,
+      this.state.rating,
+      this.state.comment
+    );
     this.setState({
       author: "",
       rating: "",

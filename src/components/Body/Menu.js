@@ -11,6 +11,20 @@ const mapStateTopops = (state) => {
   };
 };
 
+const mapTopoprs = (dispacth) => {
+  return {
+    addComment: (dishid, author, rating, comment) =>
+      dispacth({
+        type: "ADD_COMMENT",
+        payload: {
+          dishId: dishid,
+          author: author,
+          rating: rating,
+          comment: comment,
+        },
+      }),
+  };
+};
 class Menu extends Component {
   state = {
     seletDishes: null,
@@ -29,6 +43,7 @@ class Menu extends Component {
     });
   };
   render() {
+    document.title = "Menu";
     const menu = this.props.dishes.map((item) => {
       return (
         <MenuItems
@@ -44,7 +59,11 @@ class Menu extends Component {
         return comment.dishId === this.state.seletDishes.id;
       });
       dishSelect = (
-        <DishDetails dish={this.state.seletDishes} comments={comments} />
+        <DishDetails
+          dish={this.state.seletDishes}
+          addComment={this.props.addComment}
+          comments={comments}
+        />
       );
     }
     return (
@@ -74,4 +93,4 @@ class Menu extends Component {
     );
   }
 }
-export default connect(mapStateTopops)(Menu);
+export default connect(mapStateTopops, mapTopoprs)(Menu);

@@ -1,6 +1,6 @@
 import React from "react";
-import NewComment from "../NewComment";
 import Loadcommets from "./LoadComments";
+import NewComment from "./NewComment";
 
 const DishDetails = (props) => {
   return (
@@ -24,7 +24,7 @@ const DishDetails = (props) => {
       <hr />
       <Loadcommets comment={props.comments} />
       <hr />
-      <NewComment />
+      <NewComment dishId={props.dish.id} addComment={props.addComment} />
     </div>
   );
 };
