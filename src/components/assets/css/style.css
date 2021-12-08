@@ -84,3 +84,9 @@ a.nav-link {
   top: 0;
   cursor: pointer;
 }
+
+.spinners{
+  display: flex;
+  justify-content: center;
+  
+}
