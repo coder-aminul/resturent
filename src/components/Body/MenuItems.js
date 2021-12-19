@@ -3,6 +3,7 @@ import React from "react";
 function MenuItems(props) {
   return (
     <div className="box" onClick={props.dishesSelect}>
+      <span className="badge badge-primary lables">{props.dish.label}</span>
       <span>
         <img
           src={props.dish.image}

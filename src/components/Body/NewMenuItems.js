@@ -5,25 +5,42 @@ class NewMenuItems extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemname: "",
+      name: "",
       price: "",
       description: "",
-      filename: "",
+      image: "",
       category: "Biriany",
+      label: "New",
+      featured: false,
     };
     this.onChangeInput = this.onChangeInput.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChangeInput = (event) => {
+    const value =
+      event.target.type === "chekbox"
+        ? event.target.checked
+        : event.target.value;
+    const name = event.target.name;
     this.setState({
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
   };
 
   onSubmit = (event) => {
     event.preventDefault();
+
     console.log(this.state);
+    this.setState({
+      itemname: "",
+      price: "",
+      description: "",
+      image: "",
+      category: "Biriany",
+      label: "New",
+      featured: false,
+    });
   };
   render() {
     return (
@@ -35,9 +52,9 @@ class NewMenuItems extends Component {
                 <Label for="itemname">Menu Name</Label>
                 <Input
                   type="text"
-                  name="itemname"
+                  name="name"
                   placeholder="Item Name"
-                  value={this.state.itemname}
+                  value={this.state.name}
                   onChange={this.onChangeInput}
                 />
               </FormGroup>
@@ -66,20 +83,31 @@ class NewMenuItems extends Component {
                 />
               </FormGroup>
             </Col>
-            <Col md={6}>
+            <Col md={3}>
+              <FormGroup check className="p-3">
+                <Input
+                  type="checkbox"
+                  name="featured"
+                  checked={this.state.featured}
+                  onChange={this.onChangeInput}
+                />
+                <Label for="featured">Featured Products</Label>
+              </FormGroup>
+            </Col>
+            <Col md={3}>
               <FormGroup>
                 <Label for="filename">Upload Image</Label>
                 <Input
                   type="file"
-                  name="filename"
-                  value={this.state.filename}
+                  name="image"
+                  value={this.state.image}
                   onChange={this.onChangeInput}
                 />
               </FormGroup>
             </Col>
-            <Col md={6}>
+            <Col md={3}>
               <FormGroup>
-                <Label for="category">Category</Label>
+                <Label for="label">Category</Label>
                 <Input
                   type="select"
                   name="category"
@@ -90,6 +118,20 @@ class NewMenuItems extends Component {
                   <option>Burgar</option>
                   <option>Kacci</option>
                   <option>Halim</option>
+                </Input>
+              </FormGroup>
+            </Col>
+            <Col md={3}>
+              <FormGroup>
+                <Label for="category">Category</Label>
+                <Input
+                  type="select"
+                  name="label"
+                  value={this.state.label}
+                  onChange={(this, this.onChangeInput)}
+                >
+                  <option>New</option>
+                  <option>Hot</option>
                 </Input>
               </FormGroup>
             </Col>

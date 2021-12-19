@@ -16,6 +16,7 @@ const dishReducer = (dishState = { isLoading: false, dishes: [] }, action) => {
         isLoading: false,
         dishes: action.payload,
       };
+
     default:
       return dishState;
   }
