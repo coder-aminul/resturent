@@ -5,6 +5,7 @@ class Grid extends Component {
     return (
       <div>
         <h4>Grid Component</h4>
+        <span>hello</span>
       </div>
     );
   }
