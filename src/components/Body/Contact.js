@@ -56,7 +56,7 @@ class Contact extends Component {
                   onChange={this.InputChangeHandle}
                 />
               </FormGroup>
-            </Col>
+          </Col>
             <Col md={6}>
               <FormGroup>
                 <Label>Last Name</Label>
