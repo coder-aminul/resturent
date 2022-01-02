@@ -1,5 +1,6 @@
-import DISHES from "../Data/Dishes";
+import { BaseURL } from "./BaseURL.js";
 import * as ActionType from "./ActionType";
+import axios from "axios";
 
 export const addComment = (dishid, author, rating, comment) => ({
   type: ActionType.ADD_COMMENT,
@@ -23,9 +24,9 @@ export const dishLoading = () => ({
 export const fetchDishes = () => {
   return (disptch) => {
     disptch(dishLoading());
-
-    setTimeout(() => {
-      disptch(loadDish(DISHES));
-    }, 1000);
+    axios
+      .get(BaseURL + "dishes")
+      .then((response) => response.data)
+      .then((dishes) => disptch(loadDish(dishes)));
   };
 };

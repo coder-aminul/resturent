@@ -1,6 +1,7 @@
 import React from "react";
 import Loadcommets from "./LoadComments";
 import NewComment from "./NewComment";
+import { BaseURL } from "../../redux/BaseURL";
 
 const DishDetails = (props) => {
   return (
@@ -8,7 +9,7 @@ const DishDetails = (props) => {
       <div className="modal-box">
         <div className="modal-img">
           <img
-            src={props.dish.image}
+            src={BaseURL + props.dish.image}
             alt={props.dish.name}
             className="menu-img"
           />

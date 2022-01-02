@@ -1,4 +1,5 @@
 import React from "react";
+import { BaseURL } from "../../redux/BaseURL";
 
 function MenuItems(props) {
   return (
@@ -6,7 +7,7 @@ function MenuItems(props) {
       <span className="badge badge-primary lables">{props.dish.label}</span>
       <span>
         <img
-          src={props.dish.image}
+          src={BaseURL + props.dish.image}
           alt={props.dish.name}
           className="menu-img"
         />
