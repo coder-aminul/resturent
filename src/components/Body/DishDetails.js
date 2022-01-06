@@ -23,7 +23,10 @@ const DishDetails = (props) => {
         </div>
       </div>
       <hr />
-      <Loadcommets comment={props.comments} />
+      <Loadcommets
+        comment={props.comments}
+        commentIsLoading={props.commentisLoading}
+      />
       <hr />
       <NewComment dishId={props.dish.id} addComment={props.addComment} />
     </div>

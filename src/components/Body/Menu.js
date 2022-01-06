@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import { addComment, fetchDishes } from "../../redux/actionCreator";
+import {
+  addComment,
+  fetchDishes,
+  fetchComment,
+} from "../../redux/actionCreator";
 import DishDetails from "./DishDetails";
 import Loading from "./Loading";
 import MenuItems from "./MenuItems";
@@ -19,6 +23,9 @@ const mapTopoprs = (dispacth) => {
       dispacth(addComment(dishid, author, rating, comment)),
     fetchDishes: () => {
       dispacth(fetchDishes());
+    },
+    fetchComments: () => {
+      dispacth(fetchComment());
     },
   };
 };
@@ -41,6 +48,7 @@ class Menu extends Component {
   };
   componentDidMount() {
     this.props.fetchDishes();
+    this.props.fetchComments();
   }
   render() {
     document.title = "Menu";
@@ -58,7 +66,7 @@ class Menu extends Component {
       });
       let dishSelect = null;
       if (this.state.seletDishes != null) {
-        const comments = this.props.comments.filter((comment) => {
+        const comments = this.props.comments.comments.filter((comment) => {
           return comment.dishId === this.state.seletDishes.id;
         });
         dishSelect = (
@@ -66,6 +74,7 @@ class Menu extends Component {
             dish={this.state.seletDishes}
             addComment={this.props.addComment}
             comments={comments}
+            commentisLoading={this.props.isLoading}
           />
         );
       }

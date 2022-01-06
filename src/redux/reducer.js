@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import COMMENTS from "../Data/Comments";
 import * as ActionType from "../redux/ActionType";
 import * as Forms from "./Forms";
 import { createForms } from "react-redux-form";
@@ -18,14 +17,28 @@ const dishReducer = (dishState = { isLoading: false, dishes: [] }, action) => {
         isLoading: false,
         dishes: action.payload,
       };
-
     default:
       return dishState;
   }
 };
 
-const commentsReducer = (commentSate = COMMENTS, action) => {
+const commentsReducer = (
+  commentSate = { isLoading: true, comments: [] },
+  action
+) => {
   switch (action.type) {
+    case ActionType.LOAD_COMMENT:
+      return {
+        ...commentSate,
+        isLoading: false,
+        comments: action.payload,
+      };
+    case ActionType.COMMENTS_LOADNING:
+      return {
+        ...commentSate,
+        isLoading: true,
+        comments: [],
+      };
     case ActionType.ADD_COMMENT:
       let comment = action.payload;
       comment.id = commentSate.length;
