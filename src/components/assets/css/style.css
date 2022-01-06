@@ -51,24 +51,26 @@ a.nav-link {
   text-transform: uppercase;
   font-size: 14px;
 }
-.navbar .nav-link:hover{
-  color:#ffce00ed!important;
+.navbar .nav-link:hover {
+  color: #ffce00ed !important;
 }
 
-.navbar-nav a:hover,a:active,a.active{
-  color: #ffce00ed!important;
+.navbar-nav a:hover,
+a:active,
+a.active {
+  color: #ffce00ed !important;
 }
-.active{
-  color: #ffce00ed!important;
+.active {
+  color: #ffce00ed !important;
 }
-.comment-date{
+.comment-date {
   font-weight: bold;
   font-size: 9px;
 }
 .modal-dialog {
   max-width: 850px;
 }
-.modal-box{
+.modal-box {
   display: flex;
   justify-content: space-between;
 }
@@ -76,23 +78,25 @@ a.nav-link {
   margin-left: 24px;
   text-align: justify;
 }
-.modal-img>img{
+.modal-img > img {
   max-width: 300px;
 }
-.modal-close{
+.modal-close {
   position: absolute;
   right: 8px;
   top: 0;
   cursor: pointer;
 }
 
-.spinners{
+.spinners {
   display: flex;
   justify-content: center;
-  
 }
-.lables{
+.lables {
   position: absolute;
   top: -2px;
   right: -2px;
+}
+img.logo {
+  max-width: 180px;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Control, Form, Errors, actions, LocalForm } from "react-redux-form";
+import { Control, Form, Errors, actions } from "react-redux-form";
 import { Button, Col, FormGroup, Label, Row } from "reactstrap";
 import { connect } from "react-redux";
 

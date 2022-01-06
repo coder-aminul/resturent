@@ -41,10 +41,11 @@ const commentsReducer = (
       };
     case ActionType.ADD_COMMENT:
       let comment = action.payload;
-      comment.id = commentSate.length;
-      comment.date = new Date().toDateString();
       //console.log(comment);
-      return commentSate.concat(comment);
+      return {
+        ...commentSate,
+        comments: commentSate.comments.concat(comment),
+      };
     default:
       return commentSate;
   }

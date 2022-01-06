@@ -26,7 +26,13 @@ class Navigation extends Component {
       <Navbar dark color="dark" expand="sm">
         <div className="container">
           <NavbarToggler onClick={this.navToggle} />
-          <NavbarBrand href="/">myResturent</NavbarBrand>
+          <NavbarBrand href="/">
+            <img
+              className="logo"
+              src="http://localhost:3001/images/logo.png"
+              alt="logo"
+            />
+          </NavbarBrand>
           <Collapse isOpen={this.state.isNavOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
