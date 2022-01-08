@@ -46,7 +46,10 @@ export const fetchComment = () => {
       .catch((error) => console.log(error.message));
   };
 };
-
+export const fetchDishehFailed = (error) => ({
+  type: ActionType.FETCH_FAILED,
+  payload: error,
+});
 export const fetchDishes = () => {
   return (disptch) => {
     disptch(dishLoading());
@@ -54,6 +57,6 @@ export const fetchDishes = () => {
       .get(BaseURL + "dishes")
       .then((response) => response.data)
       .then((dishes) => disptch(loadDish(dishes)))
-      .catch((error) => console.log(error.message));
+      .catch((error) => disptch(fetchDishehFailed(error.message)));
   };
 };

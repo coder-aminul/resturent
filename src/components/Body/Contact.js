@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Col, FormGroup, Label, Row } from "reactstrap";
+import { Col, FormGroup, Label, Row, Alert } from "reactstrap";
 import { Control, Form, Errors, actions } from "react-redux-form";
 import { connect } from "react-redux";
+import axios from "axios";
+import { BaseURL } from "../../redux/BaseURL";
 
 const mapDispatchToprops = (dispatch) => {
   return {
@@ -18,14 +20,39 @@ const isEmail = (value) =>
   /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value);
 
 class Contact extends Component {
+  state = {
+    alertShow: false,
+    alertText: null,
+    alertType: null,
+  };
   submitHandler = (value) => {
-    console.log(value);
+    //console.log(value);
+    axios
+      .post(BaseURL + "feedback", value)
+      .then((response) => response.status)
+      .then((status) => {
+        if (status === 201) {
+          this.setState({
+            alertShow: true,
+            alertText: "Submited Successfully",
+            alertType: "success",
+          });
+          setTimeout(() => {
+            this.setState({
+              alertShow: false,
+            });
+          }, 2000);
+        }
+      });
     this.props.resetForm();
   };
   render() {
     return (
       <div className="container">
         <h2 className="my-2 text-center">Contact Form</h2>
+        <Alert isOpen={this.state.alertShow} color={this.state.alertType}>
+          {this.state.alertText}
+        </Alert>
         <Form
           model="contactForm"
           onSubmit={(value) => this.submitHandler(value)}
@@ -116,7 +143,7 @@ class Contact extends Component {
                   show="touched"
                   messages={{
                     required: "Required",
-                    isPhone: (value) => `${value} isnot a valid Phone`,
+                    isPhone: (value) => `${value} isnot a valid Phone Number`,
                   }}
                 />
               </FormGroup>

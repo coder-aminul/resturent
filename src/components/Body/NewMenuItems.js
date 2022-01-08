@@ -1,95 +1,95 @@
 import React, { Component } from "react";
-import { Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
+import { Col, FormGroup, Alert, Label, Row } from "reactstrap";
+import axios from "axios";
+import { BaseURL } from "../../redux/BaseURL";
+import { Control, LocalForm } from "react-redux-form";
 
 class NewMenuItems extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      price: "",
-      description: "",
-      image: "",
-      category: "Biriany",
-      label: "New",
-      featured: false,
-    };
-    this.onChangeInput = this.onChangeInput.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onChangeInput = (event) => {
-    const value =
-      event.target.type === "chekbox"
-        ? event.target.checked
-        : event.target.value;
-    const name = event.target.name;
-    this.setState({
-      [name]: value,
-    });
+  state = {
+    alertShow: false,
+    alertText: null,
+    alertType: null,
   };
-
-  onSubmit = (event) => {
-    event.preventDefault();
-
-    console.log(this.state);
-    this.setState({
-      itemname: "",
-      price: "",
-      description: "",
-      image: "",
-      category: "Biriany",
-      label: "New",
-      featured: false,
-    });
+  onSubmit = (value) => {
+    axios
+      .post(BaseURL + "dishes", value)
+      .then((response) => response.status)
+      .then((status) => {
+        if (status === 201) {
+          this.setState({
+            alertShow: true,
+            alertText: "Submited Successfully",
+            alertType: "success",
+          });
+          setTimeout(() => {
+            this.setState({
+              alertShow: false,
+            });
+          }, 2000);
+        }
+      })
+      .catch((error) => {
+        this.setState({
+          alertShow: true,
+          alertText: error.message,
+          alertType: "danger",
+        });
+        setTimeout(() => {
+          this.setState({
+            alertShow: false,
+          });
+        }, 2000);
+      });
   };
   render() {
     return (
       <div className="container">
-        <Form className="my-3" onSubmit={this.onSubmit}>
+        <h2 className="text-center my-2">New Item Add</h2>
+        <Alert isOpen={this.state.alertShow} color={this.state.alertType}>
+          {this.state.alertText}
+        </Alert>
+        <LocalForm className="my-3" onSubmit={(value) => this.onSubmit(value)}>
           <Row>
             <Col md={6}>
               <FormGroup>
                 <Label for="itemname">Menu Name</Label>
-                <Input
-                  type="text"
+                <Control.text
+                  model=".name"
                   name="name"
                   placeholder="Item Name"
-                  value={this.state.name}
-                  onChange={this.onChangeInput}
+                  className="form-control"
+                  required
                 />
               </FormGroup>
             </Col>
             <Col md={6}>
               <FormGroup>
                 <Label for="prices">Price</Label>
-                <Input
-                  type="text"
+                <Control.text
+                  model=".price"
                   name="price"
+                  className="form-control"
                   placeholder="Item Price"
-                  value={this.state.price}
-                  onChange={this.onChangeInput}
                 />
               </FormGroup>
             </Col>
             <Col md={12}>
               <FormGroup>
                 <Label for="description">Description</Label>
-                <Input
-                  type="textarea"
+                <Control.textarea
+                  model=".description"
+                  className="form-control"
                   name="description"
                   placeholder="Item Description"
-                  value={this.state.description}
-                  onChange={this.onChangeInput}
                 />
               </FormGroup>
             </Col>
             <Col md={3}>
               <FormGroup check className="p-3">
-                <Input
-                  type="checkbox"
+                <Control.checkbox
+                  model=".featured"
                   name="featured"
-                  checked={this.state.featured}
-                  onChange={this.onChangeInput}
+                  className="form-control-input mx-2"
                 />
                 <Label for="featured">Featured Products</Label>
               </FormGroup>
@@ -97,42 +97,35 @@ class NewMenuItems extends Component {
             <Col md={3}>
               <FormGroup>
                 <Label for="filename">Upload Image</Label>
-                <Input
-                  type="file"
-                  name="image"
-                  value={this.state.image}
-                  onChange={this.onChangeInput}
-                />
+                <Control.file model=".image" name="image" />
               </FormGroup>
             </Col>
             <Col md={3}>
               <FormGroup>
                 <Label for="label">Category</Label>
-                <Input
-                  type="select"
+                <Control.select
+                  model=".category"
                   name="category"
-                  value={this.state.category}
-                  onChange={(this, this.onChangeInput)}
+                  className="form-control"
                 >
                   <option>Biriany</option>
                   <option>Burgar</option>
                   <option>Kacci</option>
                   <option>Halim</option>
-                </Input>
+                </Control.select>
               </FormGroup>
             </Col>
             <Col md={3}>
               <FormGroup>
                 <Label for="category">Category</Label>
-                <Input
-                  type="select"
+                <Control.select
+                  model=".label"
                   name="label"
-                  value={this.state.label}
-                  onChange={(this, this.onChangeInput)}
+                  className="form-control"
                 >
                   <option>New</option>
                   <option>Hot</option>
-                </Input>
+                </Control.select>
               </FormGroup>
             </Col>
             <Col>
@@ -141,7 +134,7 @@ class NewMenuItems extends Component {
               </button>
             </Col>
           </Row>
-        </Form>
+        </LocalForm>
       </div>
     );
   }

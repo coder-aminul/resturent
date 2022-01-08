@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import {
+  Alert,
+  Button,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+} from "reactstrap";
 import {
   addComment,
   fetchDishes,
@@ -54,6 +61,14 @@ class Menu extends Component {
     document.title = "Menu";
     if (this.props.dishes.isLoading) {
       return <Loading />;
+    } else if (this.props.dishes.errMess != null) {
+      return (
+        <div className="container my-2">
+          <Alert color="danger fw-bold">
+            <b>{this.props.dishes.errMess}</b>
+          </Alert>
+        </div>
+      );
     } else {
       const menu = this.props.dishes.dishes.map((item) => {
         return (

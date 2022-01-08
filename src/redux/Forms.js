@@ -13,3 +13,12 @@ export const initialCommentForm = {
   rating: "5",
   comment: "",
 };
+export const initialItemForm = {
+  name: "",
+  price: "",
+  description: "",
+  image: "",
+  category: "Biriany",
+  label: "New",
+  featured: false,
+};

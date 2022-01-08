@@ -4,3 +4,4 @@ export const COMMENTS_LOADNING = "COMMENTS_LOADING";
 export const ADD_ITEM = "ADD_ITEM";
 export const LOAD_DISH = "LOAD_DISH";
 export const DISH_LOADING = "DISH_LOADING";
+export const FETCH_FAILED = "FETCH_FAILED";

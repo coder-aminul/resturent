@@ -41,7 +41,6 @@ class NewComment extends Component {
       rating: "",
       comment: "",
     });
-    event.preventDefault();
     this.props.resetCommentForm();
   };
   render() {
